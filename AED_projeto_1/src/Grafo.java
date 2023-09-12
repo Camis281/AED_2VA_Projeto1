@@ -241,14 +241,8 @@ public class Grafo implements Serializable{
         do {
             System.out.println("\n---------------GRAFO---------------");
             System.out.printf("\n\t0 - Sair\n\t1 - Adicionar vertice\n\t2 - Adicionar aresta\n\t3 - Buscar vertice\n\t4 - Buscar aresta\n\t5 - Caminho do vertice a ate b\n\t6 - Remover aresta\n\t7 - Busca em Largura\n\t8 - Imprimir vertices\n\t9 - Imprimir arestas\n\t10 - Limpar grafo \n>");
-            try {
-                op = scanner.nextInt();
-                scanner.nextLine(); // Limpa o buffer de entrada após a leitura do número.
-            } catch (InputMismatchException e) {
-                System.out.println("Entrada inválida. Digite um número inteiro válido.");
-                scanner.nextLine(); // Limpa o buffer de entrada se ocorrer uma exceção.
-            }
-
+            op = scanner.nextInt();
+            scanner.nextLine();
 
             String nome, bairro, origem, destino;
             boolean ver;
