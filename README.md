@@ -1,17 +1,17 @@
 # AED_2VA_Projeto1
 Instruções Gerais
-• O projeto da disciplina equivale à segunda parte da 2VA, valendo até 5 pontos. Caso o projeto
+# • O projeto da disciplina equivale à segunda parte da 2VA, valendo até 5 pontos. Caso o projeto
 tenha interface gráfica, poderá ter 1 ponto extra;
-• Todo projeto deve ter alguma forma de identificação visual do funcionamento;
-• Os projetos podem ser feitos sozinho ou em duplas, e pode utilizar qualquer linguagem de
+# • Todo projeto deve ter alguma forma de identificação visual do funcionamento;
+# • Os projetos podem ser feitos sozinho ou em duplas, e pode utilizar qualquer linguagem de
 programação. A nota será individual e será analisado o nível de participação do aluno e
 entendimento do código;
-• O projeto deverá ser apresentado no dia 12/09. A ausência de algum membro da equipe
+# • O projeto deverá ser apresentado no dia 12/09. A ausência de algum membro da equipe
 implica em zero;
-• O projeto obrigatoriamente deverá usar grafos na implementação. A não utilização de grafos
+# • O projeto obrigatoriamente deverá usar grafos na implementação. A não utilização de grafos
 implica em nota zero;
-• Em caso de plágio, a nota será zerada;
-• O projeto desenvolvido pode ser escolhido entre as opções descritas a seguir.
+# • Em caso de plágio, a nota será zerada;
+# • O projeto desenvolvido pode ser escolhido entre as opções descritas a seguir.
 
 Descrição dos Projeto
 
