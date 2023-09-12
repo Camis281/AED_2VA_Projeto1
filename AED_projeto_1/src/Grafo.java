@@ -96,8 +96,6 @@ public class Grafo implements Serializable{
 
             if (!arestasEncontradas.isEmpty()) {
                 for (Arestas aresta : arestasEncontradas) {
-                    //origem.getEntrada().remove(aresta);
-                    //destino.getSaida().remove(aresta);
                     aresta.getInicio().getSaida().remove(aresta);
                     aresta.getFim().getEntrada().remove(aresta);
                     arestas.remove(aresta);
@@ -110,14 +108,9 @@ public class Grafo implements Serializable{
                 System.out.println();
                 System.out.println("Lista de arestas após a remoção:");
                 for (Arestas aresta : arestas) {
-                    System.out.println(aresta.getInicio().getCliente().getNome() + " -> " + aresta.getFim().getCliente().getNome());
+                    System.out.println(aresta.getInicio().getCliente().getNome() + " -> " + aresta.getFim().getCliente().getNome() + " Distancia " + aresta.getDistancia());
                 }
 
-                System.out.println();
-                System.out.println("Arestas que saem da origem:");
-                for (Arestas aresta : origem.getSaida()) {
-                    System.out.println(aresta.getFim().getCliente());
-                }
             } else {
                 System.out.println("Aresta não encontrada!!!");
             }
@@ -125,7 +118,6 @@ public class Grafo implements Serializable{
             System.out.println("Vértice de origem ou destino não encontrado.");
         }
     }
-
     public void BuscaEmLargura() {
         ArrayList<Vertice> marcados = new ArrayList<Vertice>();
         ArrayList<Vertice> fila = new ArrayList<Vertice>();
@@ -133,7 +125,7 @@ public class Grafo implements Serializable{
         marcados.add(atual);
         System.out.println(atual.getCliente());
         fila.add(atual);
-        while (fila.size() > 0) {
+        while (!fila.isEmpty()) {
             Vertice visitado = fila.get(0);
             for (int i = 0; i < visitado.getSaida().size(); i++) {
                 Vertice proximo = visitado.getSaida().get(i).getFim();
@@ -142,10 +134,11 @@ public class Grafo implements Serializable{
                     System.out.println(proximo.getCliente());
                     fila.add(proximo);
                 }
-                fila.remove(0);
             }
+            fila.remove(0);
         }
     }
+
 
     public void Dijkstra(No_cliente origem, No_cliente destino) {
         for (Vertice vertice : vertices) {
@@ -201,9 +194,9 @@ public class Grafo implements Serializable{
             System.out.println();
             System.out.println("Caminho de " + origem.getNome() + " para " + destino.getNome() + ":");
             for (int i = 0; i < caminho.size() - 1; i++) {
-                System.out.print(caminho.get(i).getCliente().getNome() + " -> ");
+                System.out.print(caminho.get(i).getCliente().getNome() + "/" + caminho.get(i).getCliente().getBairro() + " -> ");
             }
-            System.out.println(caminho.get(caminho.size() - 1).getCliente().getNome());
+            System.out.println(caminho.get(caminho.size() - 1).getCliente().getNome()+ "/" + caminho.get(caminho.size() - 1).getCliente().getBairro());
 
             System.out.println("Distância total percorrida: " + verticeDestino.getDistanciaMinima());
         }
@@ -224,7 +217,6 @@ public class Grafo implements Serializable{
 
     public void ImprimirListaVertices() {
         if (!vertices.isEmpty()) {
-            System.out.println();
             System.out.println("Lista de vertices: ");
             for (Vertice v : vertices) {
                 System.out.println(v.getCliente());
@@ -242,9 +234,14 @@ public class Grafo implements Serializable{
         do {
             System.out.println("\n---------------GRAFO---------------");
             System.out.printf("\n\t0 - Sair\n\t1 - Adicionar vertice\n\t2 - Adicionar aresta\n\t3 - Buscar vertice\n\t4 - Buscar aresta\n\t5 - Caminho do vertice a ate b\n\t6 - Remover aresta\n\t7 - Busca em Largura\n\t8 - Imprimir vertices\n\t9 - Imprimir arestas\n\t10 - Limpar grafo \n>");
-            op = scanner.nextInt();
-            scanner.nextLine();
-
+            try {
+                op = scanner.nextInt();
+                scanner.nextLine();
+            } catch (InputMismatchException e) {
+                System.out.println("Erro: Insira um valor numérico válido.");
+                scanner.nextLine();
+                op = -1;
+            }
             String nome, bairro, origem, destino;
             boolean ver;
             No_cliente auxCliente;
@@ -368,8 +365,7 @@ public class Grafo implements Serializable{
 
     public void salvarArquivoEm(String nomeArquivo) {
         try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(nomeArquivo))) {
-            outputStream.writeObject(vertices);
-            outputStream.writeObject(arestas);
+            outputStream.writeObject(this); // Grava o objeto Grafo atual
             System.out.println("Dados salvos com sucesso!");
         } catch (IOException e) {
             e.printStackTrace();
@@ -395,8 +391,6 @@ public class Grafo implements Serializable{
         }
     }
 
-
-    // Método para limpar todas as listas
     public void limparArray() {
         this.vertices.clear();
         this.arestas.clear();
